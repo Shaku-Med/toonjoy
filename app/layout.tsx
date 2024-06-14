@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   icons: [
     { rel: 'shortcut icon', url: `../favicon.ico`, media: `(prefers-color-scheme: dark)`, type: `image/x-icon` },
     { rel: 'shortcut icon', url: `../favicon1.ico`, media: `(prefers-color-scheme: light)`, type: `image/x-icon` },
-    { rel: 'apple-touch-icon', url: `../favicon.ico` }
+    { rel: 'apple-touch-icon', url: `../fav.png` }
   ],
   // siteName: 'Toon Joy',
   // canonicalUrl: 'https://toonjoy.org',
@@ -46,14 +46,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Toon Joy - All the Comedy Videos You Love',
     description: 'Toon Joy offers a collection of the funniest comedy videos on the internet. Join us for endless laughter and joy.',
-    images: './fav.png',
+    images: '../fav.png',
   },
   openGraph: {
     type: 'website',
     url: 'https://toonjoy.org',
     title: 'Toon Joy - All the Comedy Videos You Love',
     description: 'Toon Joy offers a collection of the funniest comedy videos on the internet. Join us for endless laughter and joy.',
-    images: './fav.png',
+    images: '../fav.png',
     siteName: 'Toon Joy',
   },
   // apple: {
