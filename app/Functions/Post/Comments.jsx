@@ -48,7 +48,7 @@ let Comments = ({ val, ispost, post }) => {
                 
                 //     replaced = replaced.replace(new RegExp(`\\b${escapeRegExp(badWord)}\\b`, "gi"), censoredWord)
                 // });
-                setalert(`Bad${bd.length > 1 ? "words" : `word`} detected! Please be friendly in comment. \n Words found (${bd.join("| ")})`)
+                setalert(`Bad${bd.length > 1 ? `words` : `word`} detected! Please be friendly in comment. \n Words found (${bd.join(`| `)})`)
                 // 
                 audio.src = `../../progress.mp3`
                 audio.play()
