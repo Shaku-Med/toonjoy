@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   title: 'Toon Joy - All the Comedy Videos You Love',
   description: 'Toon Joy offers a collection of the funniest comedy videos on the internet. Join us for endless laughter and joy.',
   keywords: 'Toon Joy, comedy videos, funny clips, humor, laughter, entertainment',
-  authors: [`Toon Joy Team`],
+  authors: 'Toon Joy Team',
   siteName: 'Toon Joy',
   canonicalUrl: 'https://toonjoy.example.com',
   faviconDark: '../favicon.ico',
