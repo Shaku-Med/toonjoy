@@ -25,25 +25,29 @@ let Data = ({ rl, setrl, k, id }) => {
                 }
             });
 
-            let d = JSON.parse(Objects.encDec(ax.data.d, `${id}+${k.a}+${window.navigator.userAgent.split(/\s+/).join('')}`, true, true));
-            setposts((prevPosts) => {
-                const updatedPosts = prevPosts.map(post => {
-                    const relatedComments = d.data.filter(comment => comment.postId === post.id);
-                    if (relatedComments.length > 0) {
-                        const updatedComments = relatedComments.filter(comment => !post.comments.some(c => c.id === comment.id));
-                        return { ...post, comments: [...post.comments, ...updatedComments] };
-                    }
-                    return post;
+            let dM = Objects.encDec(ax.data.d, `${id}+${k.a}+${window.navigator.userAgent.split(/\s+/).join('')}`, true, true)
+
+            if (dM && dM.includes('{')) {
+                let d = JSON.parse(dM);
+                setposts((prevPosts) => {
+                    const updatedPosts = prevPosts.map(post => {
+                        const relatedComments = d.data.filter(comment => comment.postId === post.id);
+                        if (relatedComments.length > 0) {
+                            const updatedComments = relatedComments.filter(comment => !post.comments.some(c => c.id === comment.id));
+                            return { ...post, comments: [...post.comments, ...updatedComments] };
+                        }
+                        return post;
+                    });
+                    return updatedPosts;
                 });
-                return updatedPosts;
-            });
 
             if (d.next_page) {
                 getLikCmt(d.next_page);
             } else {
                 setld(null);
             }
-        } catch {
+            }
+        } catch (e) {
             setTimeout(() => getLikCmt(next_page), 2000);
         }
     };
@@ -92,7 +96,7 @@ let Data = ({ rl, setrl, k, id }) => {
                 dataget(d.next_page);
             }
             else {
-                setTimeout(dataget, 10000)
+                setTimeout(dataget, 60000)
             }
         } catch {
             setTimeout(() => dataget(next_page), 2000);
