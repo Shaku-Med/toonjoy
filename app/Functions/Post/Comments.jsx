@@ -8,10 +8,7 @@ import { Connect } from "../Connect";
 import Objects from "../Data/Objects";
 import { useLocation } from "react-router-dom";
 import { isIOS } from "react-device-detect"
-import CryptoJS from "crypto-js";
 // 
-import { FixedSizeList as List } from "react-window";
-
 let Comments = ({ val, ispost, post }) => {
     const { dv, posts, setposts, k, audio, db } = useContext(Connect);
     const [input, setInput] = useState("");
@@ -167,7 +164,7 @@ let Comments = ({ val, ispost, post }) => {
             // Sp = `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join("|")})(?:$|[^\\w-])`
             // `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join("|")})(?=\\w|$)`,
             const badWordsPattern = new RegExp(
-                `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join("|")})(?:$|[^\\w-])`,
+                `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join(`|`)})(?:$|[^\\w-])`,
                 "gi"
             );
 
