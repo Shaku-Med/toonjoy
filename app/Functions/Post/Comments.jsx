@@ -1,24 +1,24 @@
-'use client';
+"use client";
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import Cm from "./Cm";
 import Modal from "../Moda/Modal";
 import axios from "axios";
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from "uuid"
 import { Connect } from "../Connect";
 import Objects from "../Data/Objects";
 import { useLocation } from "react-router-dom";
-import { isIOS } from 'react-device-detect'
+import { isIOS } from "react-device-detect"
 import CryptoJS from "crypto-js";
 // 
-import { FixedSizeList as List } from 'react-window';
+import { FixedSizeList as List } from "react-window";
 
 let Comments = ({ val, ispost, post }) => {
     const { dv, posts, setposts, k, audio, db } = useContext(Connect);
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState("");
     const [reply, setreply] = useState(null);
     // 
     const [sub, setsub] = useState(null);
-    const [hasidinput, sethasidinput] = useState('');
+    const [hasidinput, sethasidinput] = useState("");
     const [hasid, sethasid] = useState(null);
     // 
     const [file, setFile] = useState(null);
@@ -42,13 +42,13 @@ let Comments = ({ val, ispost, post }) => {
                 //     let length = badWord.length;
                 //     let start = badWord.slice(0, 1);
                 //     let end = badWord.slice(-1);
-                //     let ar = ['●', '*', '/', '🤬']
+                //     let ar = ["●", "*", "/", "🤬"]
                 //     let middle = ar[Math.floor(Math.random() * ar.length)].repeat(Math.max(length - 2, 1));
                 //     let censoredWord = start + middle + end;
                 
-                //     replaced = replaced.replace(new RegExp(`\\b${escapeRegExp(badWord)}\\b`, 'gi'), censoredWord)
+                //     replaced = replaced.replace(new RegExp(`\\b${escapeRegExp(badWord)}\\b`, "gi"), censoredWord)
                 // });
-                setalert(`Bad${bd.length > 1 ? 'words' : `word`} detected! Please be friendly in comment. \n Words found (${bd.join('| ')})`)
+                setalert(`Bad${bd.length > 1 ? "words" : `word`} detected! Please be friendly in comment. \n Words found (${bd.join("| ")})`)
                 // 
                 audio.src = `../../progress.mp3`
                 audio.play()
@@ -66,7 +66,7 @@ let Comments = ({ val, ispost, post }) => {
         if (words) {
             const selectedFile = e.target.files[0];
             if (selectedFile) {
-                if (selectedFile.type.includes('image') || selectedFile.type.includes('video')) {
+                if (selectedFile.type.includes("image") || selectedFile.type.includes("video")) {
                     setFile(selectedFile);
                 }
             }
@@ -93,9 +93,9 @@ let Comments = ({ val, ispost, post }) => {
             }
             getBdW()
             // 
-            let comment_id = localStorage.getItem('comment_id')
+            let comment_id = localStorage.getItem("comment_id")
             if (comment_id) {
-                let dc = Objects.encDec(comment_id, `${window.navigator.userAgent.split(/\s+/).join('')}+${dv}`, true)
+                let dc = Objects.encDec(comment_id, `${window.navigator.userAgent.split(/\s+/).join("")}+${dv}`, true)
                 if (dc) {
                     sethasid(JSON.parse(dc))
                 }
@@ -111,9 +111,9 @@ let Comments = ({ val, ispost, post }) => {
 
     let loAdSScc = () => {
         try {
-            let sccinView = document.querySelector('.sccinView')
+            let sccinView = document.querySelector(".sccinView")
             if (sccinView) {
-                sccinView.scrollIntoView({ behavior: 'smooth' })
+                sccinView.scrollIntoView({ behavior: "smooth" })
             }
             else {
                 setTimeout(loAdSScc, 1000)
@@ -132,8 +132,8 @@ let Comments = ({ val, ispost, post }) => {
 
                 let getFormattedDate = (timestamp) => {
                     const date = new Date(timestamp);
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
+                    const month = String(date.getMonth() + 1).padStart(2, "0");
+                    const day = String(date.getDate()).padStart(2, "0");
                     const year = date.getFullYear();
                     return `${month}-${day}-${year}`;
                 };
@@ -163,12 +163,12 @@ let Comments = ({ val, ispost, post }) => {
     const validateAndGetBadWords = (value) => {
         try {
             if (!words || !words.badWord || !value) return null; // Return early if input data is missing or invalid
-            // Previous Patttern -> `\\b(${words.badWord.map(word => escapeRegExp(word)).join('|')})\\b`,
-            // Sp = `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join('|')})(?:$|[^\\w-])`
-            // `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join('|')})(?=\\w|$)`,
+            // Previous Patttern -> `\\b(${words.badWord.map(word => escapeRegExp(word)).join("|")})\\b`,
+            // Sp = `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join("|")})(?:$|[^\\w-])`
+            // `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join("|")})(?=\\w|$)`,
             const badWordsPattern = new RegExp(
-                `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join('|')})(?:$|[^\\w-])`,
-                'gi'
+                `(?:^|[^\\w-])(${words.badWord.map(word => escapeRegExp(word)).join("|")})(?:$|[^\\w-])`,
+                "gi"
             );
 
             const matches = value.match(badWordsPattern);
@@ -185,13 +185,13 @@ let Comments = ({ val, ispost, post }) => {
 
 
     const escapeRegExp = (string) => {
-        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     };
 
     let tst = async () => {
         try {
             let formD = new FormData()
-            formD.append('file', file)
+            formD.append("file", file)
             
         }
         catch { }
@@ -203,9 +203,9 @@ let Comments = ({ val, ispost, post }) => {
                 let captureThumbnail = (source) => {
                     try {
                         return new Promise((resolve, reject) => {
-                            const canvas = document.createElement('canvas');
-                            const video = document.createElement('video');
-                            const context = canvas.getContext('2d');
+                            const canvas = document.createElement("canvas");
+                            const video = document.createElement("video");
+                            const context = canvas.getContext("2d");
 
                             video.src = source;
 
@@ -221,15 +221,15 @@ let Comments = ({ val, ispost, post }) => {
                                         } else {
                                             reject(new Error("Blob generation failed"));
                                         }
-                                    }, 'image/jpeg', 0.5);
+                                    }, "image/jpeg", 0.5);
                                 } catch (e) {
                                     reject(e);
                                 }
                             };
 
-                            video.addEventListener('loadedmetadata', () => {
+                            video.addEventListener("loadedmetadata", () => {
                                 video.currentTime = 30;
-                                video.addEventListener('seeked', REUSE);
+                                video.addEventListener("seeked", REUSE);
                             });
 
                             video.onerror = (e) => {
@@ -245,8 +245,8 @@ let Comments = ({ val, ispost, post }) => {
                 let getFiles = async () => {
                     try {
                         if (file) {
-                            let hasBL = file.type.includes('video') ? isIOS ? null : await captureThumbnail(URL.createObjectURL(file)) : null
-                            let array = file.type.includes('video') ? hasBL ? [file, hasBL] : [file] : [file]
+                            let hasBL = file.type.includes("video") ? isIOS ? null : await captureThumbnail(URL.createObjectURL(file)) : null
+                            let array = file.type.includes("video") ? hasBL ? [file, hasBL] : [file] : [file]
                             if (array.length > 0) {
                                 // 
                                 let obb
@@ -254,17 +254,17 @@ let Comments = ({ val, ispost, post }) => {
                                     try {
                                         if (su <= array.length - 1) {
                                             let formD = new FormData()
-                                            formD.append('file', array[su]);
+                                            formD.append("file", array[su]);
                                             // 
                                             let date = new Date()
-                                            let ft = await fetch(`http://192.168.1.231:3001/cfile/${uuid().toUpperCase().split('-').join('')}`, {
+                                            let ft = await fetch(`http://192.168.1.231:3001/cfile/${uuid().toUpperCase().split("-").join("")}`, {
                                                 method: `POST`,
                                                 body: formD,
                                                 headers: {
                                                     p: Objects.encDec(JSON.stringify({
                                                         id: dv,
                                                         exp: date.setSeconds(date.getSeconds() + 30)
-                                                    }), `${window.navigator.userAgent.split(/\s+/).join('').slice(0, 6)}+${k.g}`),
+                                                    }), `${window.navigator.userAgent.split(/\s+/).join("").slice(0, 6)}+${k.g}`),
                                                 }
                                             })
 
@@ -323,16 +323,16 @@ let Comments = ({ val, ispost, post }) => {
                 let gF = await getFiles()
 
                 let obj = {
-                    id: uuid().toUpperCase().split('-').join(''),
+                    id: uuid().toUpperCase().split("-").join(""),
                     edited: false,
                     time: new Date().getTime(),
                     ownerid: hasid,
-                    reply: reply ? reply.id : '',
+                    reply: reply ? reply.id : "",
                     reported: [],
                     adult: alerts ? true : false,
                     file: gF,
                     postId: post.id,
-                    text: input.trim().length > 0 ? input.split('\n') : [],
+                    text: input.trim().length > 0 ? input.split("\n") : [],
                 }
 
                 let newPosts = [...posts]
@@ -345,16 +345,16 @@ let Comments = ({ val, ispost, post }) => {
 
                     //
 
-                    let sccinView = document.querySelector('.sccinView')
+                    let sccinView = document.querySelector(".sccinView")
                     if (sccinView) {
-                        sccinView.scrollIntoView({ behavior: 'smooth' })
+                        sccinView.scrollIntoView({ behavior: "smooth" })
                     }
 
                     setposts(newPosts)
 
-                    setInput('')
-                    setreply('')
-                    sethasidinput('')
+                    setInput("")
+                    setreply("")
+                    sethasidinput("")
                     setalert(null)
 
                     let postObj = {
@@ -367,21 +367,21 @@ let Comments = ({ val, ispost, post }) => {
 
                     // 
                     let date = new Date()
-                    await axios.post(`http://192.168.1.231:3001/save/${uuid().toUpperCase().split('-').join('')}`, {
-                        d: Objects.encDec(JSON.stringify(obj), `${k.a}+${window.navigator.userAgent.split(/\s+/).join('').slice(0, 6)}`),
+                    await axios.post(`http://192.168.1.231:3001/save/${uuid().toUpperCase().split("-").join("")}`, {
+                        d: Objects.encDec(JSON.stringify(obj), `${k.a}+${window.navigator.userAgent.split(/\s+/).join("").slice(0, 6)}`),
                         type: `comment`,
                         action: `add`,
-                        text: Objects.encDec(JSON.stringify(input.trim().length > 0 ? input.split('\n') : []), `${k.s}+${dv}`, null, true),
+                        text: Objects.encDec(JSON.stringify(input.trim().length > 0 ? input.split("\n") : []), `${k.s}+${dv}`, null, true),
                     }, {
                         headers: {
                             p: Objects.encDec(JSON.stringify({
                                 id: dv,
                                 exp: date.setSeconds(date.getSeconds() + 5)
-                            }), `${window.navigator.userAgent.split(/\s+/).join('').slice(0, 6)}+${k.g}`),
+                            }), `${window.navigator.userAgent.split(/\s+/).join("").slice(0, 6)}+${k.g}`),
                         }
                     });
 
-                    let vid = document.querySelectorAll('video')
+                    let vid = document.querySelectorAll("video")
                     if (vid.length > 0) {
                         let vos = []
                         vid.forEach((v, k) => {
@@ -396,7 +396,7 @@ let Comments = ({ val, ispost, post }) => {
                             audio.src = `../../success.mp3`
                             audio.play();
                             // 
-                            audio.addEventListener('ended', e => {
+                            audio.addEventListener("ended", e => {
                                 vos.map(v => {
                                     vid[v.id].volume = v.volume
                                 })
@@ -420,9 +420,9 @@ let Comments = ({ val, ispost, post }) => {
         if (!type) {
             let today = new Date();
             if (d.getDate() === today.getDate() && d.getMonth() === today.getMonth() && d.getFullYear() === today.getFullYear()) {
-                return 'Today';
+                return "Today";
             } else if (d.getDate() === today.getDate() - 1 && d.getMonth() === today.getMonth() && d.getFullYear() === today.getFullYear()) {
-                return 'Yesterday';
+                return "Yesterday";
             } else {
                 return d.toDateString();
             }
@@ -499,21 +499,21 @@ let Comments = ({ val, ispost, post }) => {
                         !hasid && (
                             <div className="cmidDetect p-2">
                                 <div className="infoHere text-xs opacity-[.6] text-center bd p-1">
-                                    Hey there! before you start typing, we would like you to create a one time <strong className={`uppercase`}>comment ID</strong> <mark><b>(PASSWORD)</b></mark> that'll be verified by this device only.
+                                    Hey there! before you start typing, we would like you to create a one time <strong className={`uppercase`}>comment ID</strong> <mark><b>(PASSWORD)</b></mark> that"ll be verified by this device only.
                                 </div>
                                 <div className="input fields flex items-center justify-between gap-1 text-sm p-1">
-                                    <input autoFocus value={hasidinput} onChange={e => sethasidinput(e.target.value.split(/\s+/).join(''))} placeholder={`Remember It.`} type="text" name="" id="" />
+                                    <input autoFocus value={hasidinput} onChange={e => sethasidinput(e.target.value.split(/\s+/).join(""))} placeholder={`Remember It.`} type="text" name="" id="" />
                                     <div className="btnS flex items-center justify-center gap-2">
-                                        <div onClick={e => sethasidinput(uuid().split('-').join('').toUpperCase())} className="gbtn brd flex items-center justify-center h-10 rounded-lg p-1 cursor-pointer hover:opacity-[.6]">Generate</div>
+                                        <div onClick={e => sethasidinput(uuid().split("-").join("").toUpperCase())} className="gbtn brd flex items-center justify-center h-10 rounded-lg p-1 cursor-pointer hover:opacity-[.6]">Generate</div>
                                         <div onClick={hasidinput.trim().length < 8 || hasidinput.trim().length > 35 ? e => { } : e => {
                                             if (!hasidinput.trim().length < 8 && hasidinput.trim().length > !35) {
-                                                if (window.confirm(`Are you sure you will remember this? \n\n It will be linked with your device and cannot be changed \n\n \t We don't need your email or contact, we authenticate you with your personal device. \n All your info's are encrypted and secure. \n\n Press (OK) to continue or (CANCEL) to ignore.`)) {
+                                                if (window.confirm(`Are you sure you will remember this? \n\n It will be linked with your device and cannot be changed \n\n \t We don"t need your email or contact, we authenticate you with your personal device. \n All your info"s are encrypted and secure. \n\n Press (OK) to continue or (CANCEL) to ignore.`)) {
                                                     let obj = {
                                                         password: hasidinput,
                                                         id: dv,
                                                         time: new Date().getTime()
                                                     }
-                                                    let lok = Objects.encDec(JSON.stringify(obj), `${window.navigator.userAgent.split(/\s+/).join('')}+${dv}`)
+                                                    let lok = Objects.encDec(JSON.stringify(obj), `${window.navigator.userAgent.split(/\s+/).join("")}+${dv}`)
                                                     localStorage.setItem(`comment_id`, lok)
                                                     sethasid(obj)
                                                 }
@@ -537,9 +537,9 @@ let Comments = ({ val, ispost, post }) => {
                                                     <div className="BigWa relative w-full h-full bg-[black]">
                                                         <i onClick={e => setisp(null)} className="bi bi-x-lg z-[10000000000] h-10 w-10 top-2 left-2 absolute bg-red-500 text-white cursor-pointer flex items-center justify-center rounded-full" />
                                                         {
-                                                            file.type.includes('image') ?
+                                                            file.type.includes("image") ?
                                                                 <img className={`w-full h-full object-contain`} src={URL.createObjectURL(file)} alt={file.name} /> :
-                                                                file.type.includes('video') ?
+                                                                file.type.includes("video") ?
                                                                     <video controls playsInline className={`w-full h-full object-contain`} src={URL.createObjectURL(file)} alt={file.name} /> :
                                                                     <iframe frameBorder={0} className={`w-full h-full object-contain`} src={URL.createObjectURL(file)} alt={file.name} />
                                                         }
@@ -552,7 +552,7 @@ let Comments = ({ val, ispost, post }) => {
                                         <div className="fileUps w-full bd flex items-center justify-start gap-2 p-1">
                                             <div layoutId={file.name} onClick={e => setisp(file.name)} className="filtCtai min-w-10 h-10 w-10 overflow-hidden brd rounded-lg flex items-center justify-center">
                                                 {
-                                                    file.type.includes('image') ?
+                                                    file.type.includes("image") ?
                                                         <img className={`w-full h-full object-cover`} src={URL.createObjectURL(file)} alt={file.name} /> :
                                                         <i className="bi bi-file-earmark" />
                                                 }
@@ -579,7 +579,7 @@ let Comments = ({ val, ispost, post }) => {
                                     }
                                     <div className="WfLs w-full">
                                         <textarea onKeyDown={e => {
-                                            if ((!e.ctrlKey && !e.shiftKey) && e.key.toLowerCase() === 'enter') {
+                                            if ((!e.ctrlKey && !e.shiftKey) && e.key.toLowerCase() === "enter") {
                                                 e.preventDefault()
                                                 if ((input.trim().length > 0 || file) && !sub) {
                                                     handleSubmit()
