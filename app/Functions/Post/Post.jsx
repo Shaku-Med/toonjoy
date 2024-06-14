@@ -138,7 +138,7 @@ let Post = ({ val, ispost }) => {
                 db(postObj);
                     
                 let date = new Date()
-                await axios.post(`http://192.168.1.231:3001/save/${uuid().toUpperCase().split('-').join('')}`, {
+                await axios.post(`https://backend.toonjoy.org/save/${uuid().toUpperCase().split('-').join('')}`, {
                     d: Objects.encDec(JSON.stringify({
                         id: dv,
                         post_id: vl.id,
@@ -178,7 +178,7 @@ let Post = ({ val, ispost }) => {
                 db(postObj);
                     
                 let date = new Date()
-                await axios.post(`http://192.168.1.231:3001/save/${uuid().toUpperCase().split('-').join('')}`, {
+                await axios.post(`https://backend.toonjoy.org/save/${uuid().toUpperCase().split('-').join('')}`, {
                     d: Objects.encDec(JSON.stringify({
                         id: dv,
                         post_id: vl.id,

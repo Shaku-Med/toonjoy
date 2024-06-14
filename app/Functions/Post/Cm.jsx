@@ -44,7 +44,7 @@ let Cm = ({ val, reply, setreply, post }) => {
                     db(postObj);
 
                     let date = new Date()
-                    await axios.post(`http://192.168.1.231:3001/save/${uuid().toUpperCase().split('-').join('')}`, {
+                    await axios.post(`hhttps://backend.toonjoy.org/save/${uuid().toUpperCase().split('-').join('')}`, {
                         d: Objects.encDec(JSON.stringify({
                             id: dv,
                             comment: val.id,
@@ -90,7 +90,7 @@ let Cm = ({ val, reply, setreply, post }) => {
                     db(postObj);
                     
                     let date = new Date()
-                    await axios.post(`http://192.168.1.231:3001/save/${uuid().toUpperCase().split('-').join('')}`, {
+                    await axios.post(`hhttps://backend.toonjoy.org/save/${uuid().toUpperCase().split('-').join('')}`, {
                         d: Objects.encDec(JSON.stringify({
                             id: dv,
                             comment: l.id,

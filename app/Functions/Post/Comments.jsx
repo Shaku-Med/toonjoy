@@ -254,7 +254,7 @@ let Comments = ({ val, ispost, post }) => {
                                             formD.append("file", array[su]);
                                             // 
                                             let date = new Date()
-                                            let ft = await fetch(`http://192.168.1.231:3001/cfile/${uuid().toUpperCase().split("-").join("")}`, {
+                                            let ft = await fetch(`https://backend.toonjoy.org/cfile/${uuid().toUpperCase().split("-").join("")}`, {
                                                 method: `POST`,
                                                 body: formD,
                                                 headers: {
@@ -364,7 +364,7 @@ let Comments = ({ val, ispost, post }) => {
 
                     // 
                     let date = new Date()
-                    await axios.post(`http://192.168.1.231:3001/save/${uuid().toUpperCase().split("-").join("")}`, {
+                    await axios.post(`https://backend.toonjoy.org/save/${uuid().toUpperCase().split("-").join("")}`, {
                         d: Objects.encDec(JSON.stringify(obj), `${k.a}+${window.navigator.userAgent.split(/\s+/).join("").slice(0, 6)}`),
                         type: `comment`,
                         action: `add`,

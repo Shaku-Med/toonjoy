@@ -13,7 +13,7 @@ let Data = ({ rl, setrl, k, id }) => {
         try {
             let date = new Date();
             let obj = { id };
-            let ax = await axios.post(`http://192.168.1.231:3001/lk/${uuid().toUpperCase().split('-').join('')}`, {
+            let ax = await axios.post(`https://backend.toonjoy.org/lk/${uuid().toUpperCase().split('-').join('')}`, {
                 d: Objects.encDec(JSON.stringify(obj), `${k.a}+${window.navigator.userAgent.split(/\s+/).join('').slice(0, 6)}`),
                 type: `comment`,
                 next_page: next_page
@@ -56,7 +56,7 @@ let Data = ({ rl, setrl, k, id }) => {
         try {
             let date = new Date();
             let obS = { exp: date.setSeconds(date.getSeconds() + 4), id: id };
-            let ax = await axios.post(`http://192.168.1.231:3001/data/${uuid()}`, {
+            let ax = await axios.post(`https://backend.toonjoy.org/data/${uuid()}`, {
                 data: { d: Objects.encDec(JSON.stringify(obS), k.a) },
                 next_page: next_page
             });

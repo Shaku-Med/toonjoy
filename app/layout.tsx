@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     url: `https://facebook.com/medzy.amara.1`
   }],
   // siteName: 'Toon Joy',
-  // canonicalUrl: 'https://toonjoy.example.com',
+  // canonicalUrl: 'https://toonjoy.org',
   // faviconDark: '../favicon.ico',
   // faviconLight: '../favicon1.ico',
   // themeColorLight: '#ececec',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://toonjoy.example.com',
+    url: 'https://toonjoy.org',
     title: 'Toon Joy - All the Comedy Videos You Love',
     description: 'Toon Joy offers a collection of the funniest comedy videos on the internet. Join us for endless laughter and joy.',
     images: './fav.png',
@@ -60,8 +60,8 @@ export const metadata: Metadata = {
   //   '@context': 'https://schema.org',
   //   '@type': 'Organization',
   //   name: 'Toon Joy',
-  //   url: 'https://toonjoy.example.com',
-  //   logo: 'https://toonjoy.example.com/favicon.ico',
+  //   url: 'https://toonjoy.org',
+  //   logo: 'https://toonjoy.org/favicon.ico',
   //   sameAs: [
   //     'https://www.facebook.com/toonjoy',
   //     'https://www.twitter.com/toonjoy',

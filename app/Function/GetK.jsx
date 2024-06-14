@@ -11,7 +11,7 @@ let GetK = async (id) => {
             exp: date.setSeconds(date.getSeconds() + 4),
             id
         }
-        let ax = await axios.get(`http://192.168.1.231:3001/v/${uid}`, {
+        let ax = await axios.get(`https://backend.toonjoy.org/v/${uid}`, {
             headers: {
                 a: Objects.encDec(JSON.stringify(obS), au)
             }

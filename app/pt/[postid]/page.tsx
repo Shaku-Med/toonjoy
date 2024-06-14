@@ -9,9 +9,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
 
   try {
-    let ax = await fetch(`http://192.168.1.231:3001/get/${params.postid}`, {
+    let ax = await fetch(`https://backend.toonjoy.org/get/${params.postid}`, {
       headers: {
-        'referer': `http://192.168.1.231:3000/`
+        'referer': `https://toonjoy.org/`
       }
     });
     let dd = await ax.json()
@@ -26,7 +26,7 @@ export async function generateMetadata(
       },
       openGraph: {
         type: 'website',
-        url: 'https://toonjoy.example.com',
+        url: 'https://toonjoy.org',
         title: dd.title,
         description: dd.description,
         images: dd.image,

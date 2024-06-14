@@ -11,7 +11,7 @@ let Key = async (id, di) => {
             exp: date.setSeconds(date.getSeconds() + 4),
             id: di
         }
-        let ax = await axios.post(`http://192.168.1.231:3001`, {
+        let ax = await axios.post(`https://backend.toonjoy.org`, {
             data: {
                 d: Objects.encDec(JSON.stringify(obS), `${id}+${au}`)
             }
