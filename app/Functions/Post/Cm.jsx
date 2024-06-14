@@ -182,7 +182,7 @@ let Cm = ({ val, reply, setreply, post }) => {
                                                         {
                                                             [post.comments.find(v => v.id === val.reply)].map((v, k) => {
                                                                 return (
-                                                                    <div onClick={e => {
+                                                                    <div key={k} onClick={e => {
                                                                         let sh = document.querySelector(`.msg_${v.id}`)
                                                                         if (sh) {
                                                                             sh.scrollIntoView({ behavior: 'smooth' })

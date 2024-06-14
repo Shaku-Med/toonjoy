@@ -103,7 +103,7 @@ let Data = ({ rl, setrl, k, id }) => {
         }
     };
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         dataget();
     }, [rl]);
 
