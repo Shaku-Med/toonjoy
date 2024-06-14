@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     name: `Medzy Amara`,
     url: `https://facebook.com/medzy.amara.1`
   }],
-  siteName: 'Toon Joy',
-  canonicalUrl: 'https://toonjoy.example.com',
-  faviconDark: '../favicon.ico',
-  faviconLight: '../favicon1.ico',
-  themeColorLight: '#ececec',
-  themeColorDark: '#0f0f0f',
+  // siteName: 'Toon Joy',
+  // canonicalUrl: 'https://toonjoy.example.com',
+  // faviconDark: '../favicon.ico',
+  // faviconLight: '../favicon1.ico',
+  // themeColorLight: '#ececec',
+  // themeColorDark: '#0f0f0f',
   manifest: `./manifest.json`,
   twitter: {
     card: 'summary_large_image',
@@ -51,27 +51,27 @@ export const metadata: Metadata = {
     images: './fav.png',
     siteName: 'Toon Joy',
   },
-  apple: {
-    mobileWebAppCapable: 'yes',
-    mobileWebAppTitle: 'Toon Joy',
-    mobileWebAppStatusBarStyle: 'black',
-  },
-  structuredData: {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Toon Joy',
-    url: 'https://toonjoy.example.com',
-    logo: 'https://toonjoy.example.com/favicon.ico',
-    sameAs: [
-      'https://www.facebook.com/toonjoy',
-      'https://www.twitter.com/toonjoy',
-      'https://www.instagram.com/toonjoy'
-    ],
-  },
-  scripts: [
-    { type: 'module', src: 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js' },
-    { nomodule: true, src: 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js' },
-  ],
+  // apple: {
+  //   mobileWebAppCapable: 'yes',
+  //   mobileWebAppTitle: 'Toon Joy',
+  //   mobileWebAppStatusBarStyle: 'black',
+  // },
+  // structuredData: {
+  //   '@context': 'https://schema.org',
+  //   '@type': 'Organization',
+  //   name: 'Toon Joy',
+  //   url: 'https://toonjoy.example.com',
+  //   logo: 'https://toonjoy.example.com/favicon.ico',
+  //   sameAs: [
+  //     'https://www.facebook.com/toonjoy',
+  //     'https://www.twitter.com/toonjoy',
+  //     'https://www.instagram.com/toonjoy'
+  //   ],
+  // },
+  // scripts: [
+  //   { type: 'module', src: 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js' },
+  //   { nomodule: true, src: 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js' },
+  // ],
   // stylesheets: [
   //   'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css',
   //   { href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', integrity: 'sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN', crossorigin: 'anonymous' },
