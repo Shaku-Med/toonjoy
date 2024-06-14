@@ -30,13 +30,18 @@ export const metadata: Metadata = {
     name: `Medzy Amara`,
     url: `https://facebook.com/medzy.amara.1`
   }],
+  icons: [
+    { rel: 'shortcut icon', url: `../favicon.ico`, media: `(prefers-color-scheme: dark)`, type: `image/x-icon` },
+    { rel: 'shortcut icon', url: `../favicon1.ico`, media: `(prefers-color-scheme: light)`, type: `image/x-icon` },
+    { rel: 'apple-touch-icon', url: `../favicon.ico` }
+  ],
   // siteName: 'Toon Joy',
   // canonicalUrl: 'https://toonjoy.org',
   // faviconDark: '../favicon.ico',
   // faviconLight: '../favicon1.ico',
   // themeColorLight: '#ececec',
   // themeColorDark: '#0f0f0f',
-  manifest: `./manifest.json`,
+  manifest: `../manifest.json`,
   twitter: {
     card: 'summary_large_image',
     title: 'Toon Joy - All the Comedy Videos You Love',
