@@ -254,7 +254,7 @@ let Comments = ({ val, ispost, post }) => {
                                             formD.append("file", array[su]);
                                             // 
                                             let date = new Date()
-                                            let ft = await fetch(`https://backend.toonjoy.org/cfile/${uuid().toUpperCase().split("-").join("")}`, {
+                                            let ft = await fetch(`https://toonjoy-backend.onrender.com/cfile/${uuid().toUpperCase().split("-").join("")}`, {
                                                 method: `POST`,
                                                 body: formD,
                                                 headers: {
