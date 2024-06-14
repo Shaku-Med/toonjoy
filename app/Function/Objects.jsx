@@ -1,11 +1,10 @@
-import CryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js';
 import { enc, dec } from 'encmed';
+// interface ObjectsType {
+//     encDec(data: string, key: string, isdec: boolean, iscrypto: boolean): string | null;
+// }
 
-interface ObjectsType {
-    encDec(data: string, key: string, isdec: boolean, iscrypto: boolean): string | null;
-}
-
-const Objects: ObjectsType = {
+const Objects = {
     encDec(data, key, isdec, iscrypto) {
         try {
             if (isdec) {
