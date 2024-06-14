@@ -18,6 +18,7 @@ export async function generateMetadata(
     return {
       title: dd.title,
       description: dd.description,
+      manifest: `../manifest.json`,
       twitter: {
         card: 'summary_large_image',
         title: dd.title,
