@@ -496,7 +496,7 @@ let Comments = ({ val, ispost, post }) => {
                         !hasid && (
                             <div className="cmidDetect p-2">
                                 <div className="infoHere text-xs opacity-[.6] text-center bd p-1">
-                                    Hey there! before you start typing, we would like you to create a one time <strong className={`uppercase`}>comment ID</strong> <mark><b>(PASSWORD)</b></mark> that"ll be verified by this device only.
+                                    Hey there! before you start typing, we would like you to create a one time <strong className={`uppercase`}>comment ID</strong> <mark><b>(PASSWORD)</b></mark> that will be verified by this device only.
                                 </div>
                                 <div className="input fields flex items-center justify-between gap-1 text-sm p-1">
                                     <input autoFocus value={hasidinput} onChange={e => sethasidinput(e.target.value.split(/\s+/).join(""))} placeholder={`Remember It.`} type="text" name="" id="" />
