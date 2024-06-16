@@ -136,9 +136,9 @@ const App = ({ k, dv, db, KeepQuiet }) => {
       <meta name="apple-mobile-web-app-title" content="Toon Joy" ></meta>
       <meta name="apple-mobile-web-app-status-bar-style" content="black" ></meta>
       
-      <link rel="apple-touch-icon" href="../favicon.ico"></link>
-      <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" media="(prefers-color-scheme: dark)"></link>
-      <link rel="shortcut icon" href="../favicon1.ico" type="image/x-icon" media="(prefers-color-scheme: light)"></link>
+      <link rel="apple-touch-icon" href="https://toonjoy.org/favicon.ico"></link>
+      <link rel="shortcut icon" href="https://toonjoy.org/favicon.ico" type="image/x-icon" media="(prefers-color-scheme: dark)"></link>
+      <link rel="shortcut icon" href="https://toonjoy.org/favicon1.ico" type="image/x-icon" media="(prefers-color-scheme: light)"></link>
 
       <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style"></link>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossOrigin="anonymous"></link>

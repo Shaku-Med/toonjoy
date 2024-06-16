@@ -31,29 +31,29 @@ export const metadata: Metadata = {
     url: `https://facebook.com/medzy.amara.1`
   }],
   icons: [
-    { rel: 'shortcut icon', url: `../favicon.ico`, media: `(prefers-color-scheme: dark)`, type: `image/x-icon` },
-    { rel: 'shortcut icon', url: `../favicon1.ico`, media: `(prefers-color-scheme: light)`, type: `image/x-icon` },
-    { rel: 'apple-touch-icon', url: `../fav.png` }
+    { rel: 'shortcut icon', url: `https://toonjoy.org/favicon.ico`, media: `(prefers-color-scheme: dark)`, type: `image/x-icon` },
+    { rel: 'shortcut icon', url: `https://toonjoy.org/favicon1.ico`, media: `(prefers-color-scheme: light)`, type: `image/x-icon` },
+    { rel: 'apple-touch-icon', url: `https://toonjoy.org/fav.png` }
   ],
   // siteName: 'Toon Joy',
   // canonicalUrl: 'https://toonjoy.org',
-  // faviconDark: '../favicon.ico',
-  // faviconLight: '../favicon1.ico',
+  // faviconDark: 'https://toonjoy.org/favicon.ico',
+  // faviconLight: 'https://toonjoy.org/favicon1.ico',
   // themeColorLight: '#ececec',
   // themeColorDark: '#0f0f0f',
-  manifest: `../manifest.json`,
+  manifest: `https://toonjoy.org/manifest.json`,
   twitter: {
     card: 'summary_large_image',
     title: 'Toon Joy - All the Comedy Videos You Love',
     description: 'Toon Joy offers a collection of the funniest comedy videos on the internet. Join us for endless laughter and joy.',
-    images: '../fav.png',
+    images: 'https://toonjoy.org/fav.png',
   },
   openGraph: {
     type: 'website',
     url: 'https://toonjoy.org',
     title: 'Toon Joy - All the Comedy Videos You Love',
     description: 'Toon Joy offers a collection of the funniest comedy videos on the internet. Join us for endless laughter and joy.',
-    images: '../fav.png',
+    images: 'https://toonjoy.org/fav.png',
     siteName: 'Toon Joy',
   },
   // apple: {
@@ -84,8 +84,8 @@ export const metadata: Metadata = {
   // ],
   // preloads: [
   //   { href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', as: 'style' },
-  //   { href: '../favicon.ico', as: 'image' },
-  //   { href: '../favicon1.ico', as: 'image' },
+  //   { href: 'https://toonjoy.org/favicon.ico', as: 'image' },
+  //   { href: 'https://toonjoy.org/favicon1.ico', as: 'image' },
   //   { href: 'https://proxy-sie9.onrender.com', as: 'image', crossorigin: 'anonymous' },
   // ],
 };

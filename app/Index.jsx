@@ -229,7 +229,7 @@ const Index = () => {
                     <Bars className="w-full h-full fixed top-0 left-0" />
                     <Bars type="c" className="w-[200px] h-[200px] fixed top-0 right-0" />
                     <Bars type="o" className="w-[300px] h-[300px] fixed bottom-0 left-0" />
-                    <img alt={`design_image.png`} src={`../line.png`} className="w-[50%] opacity-[.3] h-fit object-contain fixed top-2 left-[25%] rotate-[180deg]" />
+                    <img alt={`design_image.png`} src={`https://toonjoy.org/line.png`} className="w-[50%] opacity-[.3] h-fit object-contain fixed top-2 left-[25%] rotate-[180deg]" />
                     {/*  */}
                     <div className="BoxLeft fixed top-0 left-0 w-full h-full z-[10000] opacity-[.5] pointer-events-none" />
                     <div className="Boxright fixed top-0 left-0 w-full h-full z-[10000] opacity-[.5] pointer-events-none" />
