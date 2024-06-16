@@ -310,7 +310,7 @@ const Page = () => {
                     st && (
                         (st || []).map((v, k) => {
                             return (
-                                <div className="bas_ptd p-2">
+                                <div key={k} className="bas_ptd p-2">
                                     <div className="posteddTime w-full flex items-center justify-center pointer-events-none">
                                         <motion.div initial={{ scale: 2, marginLeft: 50 }} animate={{ scale: 1, marginLeft: 0 }} style={{
                                             color: `rgb(${Math.floor(Math.random() * 300)},${Math.floor(Math.random() * 300)},${Math.floor(Math.random() * 300)})`
