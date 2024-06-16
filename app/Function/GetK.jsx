@@ -8,9 +8,10 @@ let GetK = async (id) => {
         let au = window.navigator.userAgent.split(/\s+/).join('')
         let uid = uuid()
         let obS = {
-            exp: date.setSeconds(date.getSeconds() + 4),
+            exp: date.setSeconds(date.getSeconds() + 10),
             id
         }
+        // https://backend.toonjoy.org
         let ax = await axios.get(`https://backend.toonjoy.org/v/${uid}`, {
             headers: {
                 a: Objects.encDec(JSON.stringify(obS), au)

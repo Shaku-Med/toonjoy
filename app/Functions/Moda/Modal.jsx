@@ -45,7 +45,7 @@ let Modal = ({ select, setselect, className, hasDim, mClass, children, isDrag })
                   isDrag ?
                     <motion.i title={` click to close or use the ESC key to close modal.`} onClick={e => {
                       setselect(null);
-                    }} className="bi fixed top-3 right-5 bi-x-lg h-10 w-10 min-w-10 min-h-10 flex items-center justify-center brd rounded-xl shadow-md  z-[1000000000000] bg-[var(--baseBg)] hover:bg-[#c73a3a] hover:text-white cursor-pointer" /> : ''
+                    }} className="bi fixed top-3 right-5 bi-x-lg h-10 w-10 min-w-10 min-h-10 flex items-center justify-center brd rounded-xl shadow-md  z-[1000000000000] bg-[var(--baseBg)] hover:bg-[#c73a3a] hover:text-gray-500 text-gray-500 cursor-pointer" /> : ''
                 }
                 {children}
               </motion.div>

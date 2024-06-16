@@ -9,7 +9,7 @@ let Key = async (id, di) => {
         let au = window.navigator.userAgent.split(/\s+/).join('')
 
         let obS = {
-            exp: date.setSeconds(date.getSeconds() + 4),
+            exp: date.setSeconds(date.getSeconds() + 10),
             id: di
         }
         let ax = await axios.post(`https://backend.toonjoy.org`, {

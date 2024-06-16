@@ -184,7 +184,7 @@ const getKeys = async () => {
           return (
             <div className="cnts fixed flex-col gap-2 text-center p-2 top-0 left-0 w-full h-full flex items-center justify-center">
               <div className="bolTt text-xl text-center p-2 uppercase text-red-500">
-                Verification Failed
+                Verification Failed | Please try on a faster network.
               </div>
             </div>
           )
@@ -193,7 +193,7 @@ const getKeys = async () => {
         return (
           <div className="cnts fixed flex-col gap-2 text-center p-2 top-0 left-0 w-full h-full flex items-center justify-center">
             <div className="bolTt text-xl text-center p-2 uppercase text-red-500">
-              Verification Failed
+              Verification Failed |  Please try on a faster network.
             </div>
           </div>
         )

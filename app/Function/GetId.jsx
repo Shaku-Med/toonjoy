@@ -100,7 +100,8 @@ const getOrCreateUniqueId = async (
     hasData,
     isadd,
     isall,
-    shouldadd
+    shouldadd,
+    isDelete
 ) => {
     try {
         const dbRequest = indexedDB.open(
@@ -136,7 +137,17 @@ const getOrCreateUniqueId = async (
                     }`
                 );
 
-                if (!isall) {
+                if (isDelete) {
+                    const deleteRequest = store.delete(
+                        `${hasData ? hasData.id : 'deviceId'}`
+                    );
+                    deleteRequest.onsuccess = () => {
+                        resolve(`Deleted record with ID: ${hasData ? hasData.id : 'deviceId'}`);
+                    };
+                    deleteRequest.onerror = () => {
+                        reject('Failed to delete device ID');
+                    };
+                } else if (!isall) {
                     const getRequest = store.get(
                         `${hasData ? hasData.id : 'deviceId'}`
                     );
@@ -175,7 +186,16 @@ const getOrCreateUniqueId = async (
                         reject('Failed to retrieve device ID');
                     };
                 } else {
-                    // Handle isall case
+                    let data = [];
+                    store.openCursor().onsuccess = event => {
+                        const cursor = event.target.result;
+                        if (cursor) {
+                            data.push(cursor.value);
+                            cursor.continue();
+                        } else {
+                            resolve(data);
+                        }
+                    };
                 }
             };
 
@@ -187,5 +207,5 @@ const getOrCreateUniqueId = async (
         console.error('Error in getOrCreateUniqueId:', error);
     }
 };
-    
+
 export default getOrCreateUniqueId;

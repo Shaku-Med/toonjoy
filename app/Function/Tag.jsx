@@ -21,7 +21,7 @@ let Tags = () => {
             </div>
 
             <div className="moreInfos mt-2 flex w-full text-center items-center justify-center p-1 text-[#3a7dda]">
-                <a href="http://toonjoy.org" target="_blank" rel="noopener noreferrer">Toonjoy.org</a>
+                <a href="https://toonjoy.org" target="_blank" rel="noopener noreferrer">Toonjoy.org</a>
             </div>
         </>
     )
