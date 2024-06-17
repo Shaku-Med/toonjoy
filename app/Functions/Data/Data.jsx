@@ -20,7 +20,7 @@ let Data = ({ rl, setrl, k, id }) => {
             }, {
                 headers: {
                     p: Objects.encDec(JSON.stringify({
-                        exp: date.setSeconds(date.getSeconds() + 5)
+                        exp: date.setSeconds(date.getSeconds() + 15)
                     }), `${window.navigator.userAgent.split(/\s+/).join('').slice(0, 6)}+${k.g}`),
                 }
             });
@@ -55,7 +55,7 @@ let Data = ({ rl, setrl, k, id }) => {
     let dataget = async (next_page) => {
         try {
             let date = new Date();
-            let obS = { exp: date.setSeconds(date.getSeconds() + 4), id: id };
+            let obS = { exp: date.setSeconds(date.getSeconds() + 15), id: id };
             let ax = await axios.post(`https://backend.toonjoy.org/data/${uuid()}`, {
                 data: { d: Objects.encDec(JSON.stringify(obS), k.a) },
                 next_page: next_page

@@ -373,7 +373,7 @@ let Comments = ({ val, ispost, post }) => {
                         headers: {
                             p: Objects.encDec(JSON.stringify({
                                 id: dv,
-                                exp: date.setSeconds(date.getSeconds() + 5)
+                                exp: date.setSeconds(date.getSeconds() + 10)
                             }), `${window.navigator.userAgent.split(/\s+/).join("").slice(0, 6)}+${k.g}`),
                         }
                     });
