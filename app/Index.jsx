@@ -183,37 +183,37 @@ const getKeys = async () => {
         } else {
           return (
             <div className="cnts fixed flex-col gap-2 text-center p-2 top-0 left-0 w-full h-full flex items-center justify-center">
-              <div className="bolTt text-xl text-center p-2 uppercase text-red-500">
+              <h1 className="bolTt text-xl text-center p-2 uppercase text-red-500">
                 Verification Failed | Please try on a faster network.
-              </div>
+              </h1>
             </div>
           )
         }
       } else {
         return (
           <div className="cnts fixed flex-col gap-2 text-center p-2 top-0 left-0 w-full h-full flex items-center justify-center">
-            <div className="bolTt text-xl text-center p-2 uppercase text-red-500">
+            <h1 className="bolTt text-xl text-center p-2 uppercase text-red-500">
               Verification Failed |  Please try on a faster network.
-            </div>
+            </h1>
           </div>
         )
       }
     } else {
       return (
-        <div className="cnts fixed flex-col gap-2 text-center p-2 top-0 left-0 w-full h-full flex items-center justify-center">
+        <h1 className="cnts fixed flex-col gap-2 text-center p-2 top-0 left-0 w-full h-full flex items-center justify-center">
           Failed to auth.
-        </div>
+        </h1>
       )
     }
   } catch (e) {
     return (
       <div className="cnts fixed flex-col gap-2 text-center p-2 top-0 left-0 w-full h-full flex items-center justify-center">
-        <div className="bolTt text-xl text-center p-2 uppercase text-red-500">
+        <h1 className="bolTt text-xl text-center p-2 uppercase text-red-500">
           Sorry, We were unable to get your device unique ID
-        </div>
-        <div className="smt text-sm opacity-[.6] capitalize">
+        </h1>
+        <h1 className="smt text-sm opacity-[.6] capitalize">
           We require that id to identify you. We do not use cookies as they can be modified. For high security, we require your device unique ID.
-        </div>
+        </h1>
       </div>
     )
   }
@@ -239,12 +239,12 @@ const Index = () => {
                   <div className="tomD fixed top-0 left-0 w-full h-full flex items-center justify-center p-2">
                     <div className="boldTxt flex items-center justify-center flex-col gap-2 ">
                       <Logo className={` w-40 h-40 rounded-full overflow-hidden`} />
-                      <div className="smTX text-5xl max-[600px]:text-4xl max-[400px]:text-3xl">
+                      <h1 className="smTX text-5xl max-[600px]:text-4xl max-[400px]:text-3xl">
                         Welcome to <strong>ToonJoy</strong> 😜
-                      </div>
-                      <div className="tPs text-sm max-[600px]:text-xs opacity-[.6]">
+                      </h1>
+                      <p className="tPs text-sm max-[600px]:text-xs opacity-[.6]">
                         Heng tight while we securly connect your to our server. Your security and privacy keeps our application running 🫡
-                      </div>
+                      </p>
                       <div className="mtM p-2">
                         <CircularProgress color={`success`} />
                       </div>
