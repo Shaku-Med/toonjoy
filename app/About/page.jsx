@@ -5,6 +5,12 @@ import anime from 'animejs/lib/anime.es.js';
 import Modal from '../Functions/Moda/Modal';
 import Tags from '../Function/Tag'
 
+
+export const metadata = {
+    title: `About Us | ToonJoy | Know More`,
+    description: ` Toon Joy aims to bring smiles to millions by offering a curated collection of the funniest comedy videos on the internet. Our mission is to spread happiness, one video at a time. We believe in the power of laughter to uplift spirits and connect people across the globe. Through our carefully selected content, we strive to create a platform that celebrates humor in all its forms, from timeless classics to cutting-edge viral sensations.. `
+}
+
 const About = () => {
     const [select, setselect] = useState(null);
 
@@ -21,8 +27,6 @@ const About = () => {
 
     return (
         <>
-            <title>About Us | ToonJoy | Know More</title>
-            <meta name="description" content="Toon Joy aims to bring smiles to millions by offering a curated collection of the funniest comedy videos on the internet. Our mission is to spread happiness, one video at a time. We believe in the power of laughter to uplift spirits and connect people across the globe. Through our carefully selected content, we strive to create a platform that celebrates humor in all its forms, from timeless classics to cutting-edge viral sensations.." />
             {/*  */}
             <meta name="format-detection" content="telephone=no"></meta>
             <meta name="msapplication-tap-highlight" content="no" ></meta>
