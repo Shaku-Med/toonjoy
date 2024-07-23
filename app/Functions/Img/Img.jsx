@@ -8,7 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {motion} from 'framer-motion'
 import Vid from '../Video/Vid';
 
-let Img = ({ loading, onLoad, className, src, id, hasFile, ispost, val}) => {
+let Img = ({ loading, onLoad, className, src, id, hasFile, ispost, val, auto}) => {
     const { db, imgF, CImg, setimgF} = useContext(Connect);
     // 
     const [im, setim] = useState(null)
@@ -47,7 +47,6 @@ let Img = ({ loading, onLoad, className, src, id, hasFile, ispost, val}) => {
             }
         }
         catch (e) {
-            console.log(e)
             setim(null)
             // setrl(uuid())
         }
@@ -84,7 +83,7 @@ let Img = ({ loading, onLoad, className, src, id, hasFile, ispost, val}) => {
                         {
                             hasFile ?
                                 <>
-                                    <Vid val={val} setim={setim} im={im} className={className}/>
+                                    <Vid id={id} auto={auto} val={val} setim={setim} im={im} className={className}/>
                                 </> :
                                 <motion.img onError={e => { setim(undefined) }} src={im} loading={loading} onLoad={onLoad} className={className} />
                         }

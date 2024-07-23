@@ -30,6 +30,7 @@
     "react-spring": "^9.7.3",
     "react-web-share": "^2.0.2",
     "react-window": "^1.8.10",
+    "swiper": "^11.1.5",
     "uuid": "^10.0.0",
     "video-react": "^0.16.0"
   },

@@ -9,8 +9,7 @@ import Modal from '../Functions/Moda/Modal';
 import Prev from './Prev'
 import CircularProgress from '@mui/material/CircularProgress';
 
-// 
-const Page = () => {
+const ClientD = () => {
     const [select, setSelect] = useState('media');
     const [input, setInput] = useState('');
     const [sl, setsl] = useState(null);
@@ -224,6 +223,183 @@ const Page = () => {
         }
     };
 
+    // 
+    const [title, settitle] = useState('')
+    const [description, setdescription] = useState('')
+    const [thumbnail, setthumbnail] = useState(null)
+    const [file, setfile] = useState(null)
+
+    function captureThumbnail(videoElement) {
+        const canvas = document.createElement('canvas');
+        // 
+        const context = canvas.getContext('2d');
+
+        let REUSE = async() => {
+            try {
+                canvas.width = videoElement.videoWidth;
+                canvas.height = videoElement.videoHeight;
+                context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+                let tB = await fetch(canvas.toDataURL())
+                let b = await tB.blob()
+                // 
+                setthumbnail(b)
+            } catch (e) {}
+        }
+
+        videoElement.currentTime = 20
+        videoElement.addEventListener('seeked', REUSE);
+
+    }
+
+
+    // 
+
+    async function submitFormData(formData, pmt) {
+        try {
+            let aw = await fetch('https://toonjoy-backend.onrender.com/upload', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    p: pmt
+                }
+            });
+            // 
+            let d = await aw.json();
+            if (d.success === true) {
+                return true
+            } else {
+                alert('Upload Failed.')
+                return null
+            }
+        } catch (e) {
+            return null
+        }
+    }
+
+    let handlePush = () => {
+
+        let arr = [file, thumbnail]
+        let uid = uuid();
+        // 
+        let subRst = async(index, pmt) => {
+            try {
+                if (index <= arr.length - 1) {
+                    let d = arr[index]
+                    console.log(d)
+                    if (d) {
+                        const formData = new FormData();
+                        formData.append('title', title);
+                        formData.append('description', description);
+                        formData.append('password', localStorage.getItem('password'));
+                        formData.append('file', d);
+                        formData.append('id', uid);
+                        formData.append('index', index);
+                        formData.append('type', d.type);
+                        formData.append('time', new Date().getTime());
+                        
+                        let hasdonw = await submitFormData(formData, pmt);
+                        if (hasdonw) {
+                            subRst(index + 1, pmt)
+                        } else {
+                            console.error(`Failed, Re-uploading`)
+                            setTimeout(() => subRst(index, pmt), 2000)
+                        }
+                    }
+                } else {
+                    alert(`Upload completed`)
+                    setsub(null)
+                    window.location.reload()
+                    
+                }
+            } catch (e) {
+                console.log(e)
+                alert(`something went wrong, We can't upload your data.`)
+            }
+        };
+
+        subRst(0, window.navigator.userAgent)
+
+    };
+    
+
+    let handeUPload = async (uid, id) => {
+        try {
+            setsub(true)
+            let postObj = {
+                db: `download_cache`,
+                name: `download`,
+            };
+
+            let dt = await getOrCreateUniqueId(postObj, null, true, null, null);
+            if(dt && dt.length > 0){
+                let allowedTypes = /^(audio|image|video)\//i;
+                let filteredBlobs = dt.filter(v => allowedTypes.test(v.proxy.type.toLowerCase()));
+                // 
+                if( filteredBlobs && filteredBlobs.length > 0){
+                    let f = filteredBlobs.find(v => v.id === id)
+                    if(f){
+                       if(f.hasOwnProperty('album') || f.proxy.type.toLowerCase().includes('audio')){
+                         let ft = await fetch(f.thumbnail)
+                         let d = await ft.blob()
+                        //  
+                        setthumbnail(d)
+                        setfile(f.proxy)
+                        // 
+                        setdescription(`${f.album}`)
+                        settitle(`${f.title} | ${f.artists}`)
+                        // 
+                       }
+                       else {
+                         let getTitle = window.prompt(`Type in your title: `)
+                         let getDescription = window.prompt(`Type in the description: `)
+                        //  
+                        if(getDescription && getTitle) {
+                            if(f.hasOwnProperty('thumbnail')){
+                                let ft = await fetch(f.thumbnail)
+                                let d = await ft.blob()
+                                //  
+                                setthumbnail(d)
+                             }
+                             else {
+                                let nrl = URL.createObjectURL(f.proxy)
+                                let video = document.createElement('video')
+                                video.src = nrl
+                                video.addEventListener('loadedmetadata', () => {
+                                    video.width = 400
+                                    video.height = 500
+                                //  
+                                video.currentTime = 50
+                                captureThumbnail(video)
+                                })
+                             }
+    
+                            setfile(f.proxy)
+                            // 
+                            setdescription(`${getDescription}`)
+                            settitle(`${getTitle}`);
+                        }
+                       }
+                    }
+                    else {
+                        setsub(null)
+                        alert(`Sorry, we did not find your targeted file to send to toonjoy.org. This might happen because the target file type is not in these categories. (image,video and audio) (file required). Please try using one of those categories.`)
+                    }
+                }
+            }
+            else {
+                setsub(null)
+                alert(`It looks like your download folder is empty. Try getting a link online and trying our sufff.`)
+            }
+        }
+        catch {}
+    }
+
+
+    useLayoutEffect(() => {
+        if(thumbnail && file && description.trim().length > 0 && title.trim().length > 0){
+            handlePush()
+        }
+    }, [thumbnail, file, description, title])
 
 
     return (
@@ -373,14 +549,27 @@ const Page = () => {
                                                                         </>
                                                                 }
                                                             </div>
-                                                            <div onClick={e => {
-                                                                if (window.confirm(`Are you sure you want to delete? \n It will be removed from your cache also \n\n (OK) to proceed or (CANCEL) to ignore.`)) {
-                                                                    handleDelete(vl.uid, vl.id)
-                                                                }
-                                                            }} className="left_btM cursor-pointer w-full flex items-center justify-center min-w-fit text-center transition-all gap-2 p-2 bl hover:bg-[#db4646] hover:text-white  text-red-500">
-                                                                <i className="bi bi-trash" />
-                                                                <span>Delete</span>
-                                                            </div>
+                                                            {
+                                                                sub ?
+                                                                    <CircularProgress size={20} className={` h-8 w-8 min-h-8 min-w-8`} /> :
+                                                            <>
+                                                                <div onClick={e => {
+                                                                    if (window.confirm(`Are you sure you want to delete? \n It will be removed from your cache also \n\n (OK) to proceed or (CANCEL) to ignore.`)) {
+                                                                        handleDelete(vl.uid, vl.id)
+                                                                    }
+                                                                }} className="left_btM cursor-pointer w-full flex items-center justify-center min-w-fit text-center transition-all gap-2 p-2 bl hover:bg-[#db4646] hover:text-white  text-red-500">
+                                                                    <i className="bi bi-trash" />
+                                                                    <span>Delete</span>
+                                                                </div>
+                                                                <div onClick={e => {
+                                                                    handeUPload(vl.uid, vl.id)
+                                                                }} className="left_btM cursor-pointer w-full flex items-center justify-center min-w-fit text-center transition-all gap-2 p-2 bl hover:bg-[#db4646] hover:text-white  text-red-500">
+                                                                    <i className="bi bi-upload" />
+                                                                    <span>Upload</span>
+                                                                </div>
+                                                            </>
+                                                            }
+                                                            
                                                         </div>
                                                     </motion.div>
                                                 );
@@ -398,4 +587,4 @@ const Page = () => {
     );
 };
 
-export default Page;
+export default ClientD;

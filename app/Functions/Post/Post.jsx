@@ -10,14 +10,26 @@ import axios from 'axios'
 import Objects from '../Data/Objects';
 import { v4 as uuid } from 'uuid'
 import { RWebShare } from "react-web-share";
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
+
 
 // 
-let Post = ({ val, ispost }) => {
+let Post = ({ val, ispost, isSwiper }) => {
     const { selid, setselid, posts, setposts, db, dv, k, audio } = useContext(Connect);
     let nav = useNavigate()
     let [v, setv] = useState(null)
     let [hasscale, sethasscale] = useState(null)
     let [select, setselect] = useState(null)
+    // 
+    let [show, setshow] = useState(true
+
+    )
+    let [next_play, setnext_play] = useState([])
     let ctf = useRef()
     //
 
@@ -35,11 +47,28 @@ let Post = ({ val, ispost }) => {
         }
     };
 
+    
     let disB = () => {
         try {
+            let getNEXT = () => {
+                try {
+                    let get_random = () => {
+                        for (let i = posts.length - 1; i > 0; i--) {
+                            const j = Math.floor(Math.random() * (i + 1));
+                            [posts[i], posts[j]] = [posts[j], posts[i]];
+                          }
+                          return posts.slice(0, 10);
+                    }
+                    setnext_play(get_random())
+                }
+                catch {}
+            }
+
+            // 
             let ispNmc = document.querySelector('.ispNmc');
             let ispNm = document.querySelector('.ispNm');
             if (ispNmc && ispNm) {
+                getNEXT()
                 let currentScale = 1;
 
                 ispNmc.addEventListener('wheel', e => {
@@ -227,6 +256,12 @@ let Post = ({ val, ispost }) => {
             alert(`Share aborted.`)
         }
     };
+
+    let handle_auto_nav = () => {
+        if(next_play.length > 0){
+            nav(`../pt/${next_play[0].id}`)
+        }
+    }
     
     try {
         return (
@@ -241,13 +276,12 @@ let Post = ({ val, ispost }) => {
                                 </Modal>
 
                             <motion.div layoutId={ispost ? selid : v.id} className={`${ispost ? ` h-full w-full overflow-auto fixed top-0 left-0 flex items-start justify-start flex-col ` : `w-full bg-[var(--basebg)] h-full hasohv brd overflow-hidden rounded-xl relative`}`}>
-                                <motion.div className={`${ispost ? ` bg-black flex h-full w-full items-start justify-between max-[800px]:flex-col overflow-hidden` : ` h-full relative`}`}>
-                                    <motion.div ref={ctf} className={` w-full h-full  ${ispost ? ` ispNmc max-[800px]:max-h-[40%] max-[800px]:min-h-[40%] ` : ``} imgCPJ overflow-hidden`}>
+                                <motion.div className={` relative ${ispost ? ` bg-black flex h-full w-full items-start justify-between max-[800px]:flex-col overflow-hidden` : ` h-full relative`}`}>
+                                    <motion.div ref={ctf} className={` w-full h-full relative  ${ispost ? ` ispNmc max-[800px]:max-h-[40%] max-[800px]:min-h-[40%] ` : ``} imgCPJ overflow-hidden`}>
                                         <motion.div dragConstraints={ctf} dragMomentum={false} dragElastic drag={hasscale ? true : false} onClick={ispost ? e => { } : e => {
                                             nav(`../pt/${v.id}`)
-                                            setselid(v.id)
                                         }} className={ispost ? `  z-[100000]  h-full ispNm ${hasscale ? ` cursor-grab active:cursor-grabbing w-full` : ` w-full `}` : `md:flex-shrink-0 relative shmD bd hover:opacity-[.7] cursor-pointer overflow-hidden h-full`}>
-                                            <Img val={v} hasFile={ispost ? !v.type.includes('image') ? true : null : null} src={ispost ? v.picture[0] : v.type.includes('image') ? v.picture[0] : v.thumbnail[0]} id={ispost ? v.type.includes('image') ? v.id : v.picture[0] : v.id} loading={`lazy`} className={`${ispost ? `  ${hasscale ? `w-full h-full` : `h-full w-full`} object-contain` : `h-[400px] w-full mvimg object-cover object-center bg-[black] md:h-[400px]`}`} />
+                                            <Img auto={ispost ? handle_auto_nav : null} val={v} hasFile={ispost ? !v.type.includes('image') ? true : null : null} src={ispost ? v.picture[0] : v.type.includes('image') ? v.picture[0] : v.thumbnail[0]} id={ispost ? v.type.includes('image') ? v.id : v.picture[0] : v.id} loading={`lazy`} className={`${ispost ? `  ${hasscale ? `w-full h-full` : `h-full w-full`} object-contain` : `h-[400px] w-full mvimg object-cover object-center bg-[black] md:h-[400px]`}`} />
                                             {
                                                 !ispost ?
                                                     !v.type.includes('image') ?
@@ -258,11 +292,68 @@ let Post = ({ val, ispost }) => {
                                         </motion.div>
                                     </motion.div>
                                     <motion.div className={`${ispost ? ` h-full w-full max-w-[400px] max-[800px]:max-w-full bg-[var(--mainBg)] bl flex items-start flex-col justify-between` : ` h-fit absolute bg-[var(--dimbg)] showPvs opacity-0 pointer-events-none bottom-[-200px] transition-all z-[10000000000] flex items-start justify-between flex-col w-full`}`}>
+                                    {
+                                        show && ispost && (
+                                            <div className="ylain flex items-center justify-start gap-1 bd p-1 relative w-full">
+                                        <i onClick={e => {setshow(false)}} title={`hide suggestion`} className="bi h-10 w-10 min-w-10 flex items-center z-[10000000] bg-danger cursor-pointer justify-center brd rounded-lg bi-x-lg hide_btn" />
+                                        <div className="new_scrolls w-full">
+                                        <Swiper
+                                            effect={'coverflow'}
+                                            grabCursor={true}
+                                            slidesPerView={4}
+                                            centeredSlides
+                                            coverflowEffect={{
+                                            rotate: 40,
+                                            stretch: 0,
+                                            depth: 100,
+                                            modifier: 1,
+                                            slideShadows: true,
+                                            }}
+                                            autoplay={{
+                                                delay: 3000
+                                            }}
+                                            spaceBetween={10}
+                                            modules={[EffectCoverflow, Autoplay]}
+                                            className="mySwiper h-[50px]"
+                                        >
+                                           {
+                                            (next_play || []).map((val, key) => {
+                                                return (
+                                                    <SwiperSlide className={` overflow-hidden`} key={key}>
+                                                        <Post isSwiper={true} val={val}/>
+                                                    </SwiperSlide>
+                                                )
+                                            })
+                                           }
+                                        </Swiper>
+                                        </div>
+                                    </div>
+                                        )
+                                    }
                                         {
                                             ispost ?
                                                 <>
-                                                    <div className={` w-full ${ispost ? ` p-2 flex items-center justify-between flex-col` : `PostV`}`}>
-                                                        <motion.div className={` uppercase w-full tracking-wide text-indigo-500 font-semibold ${ispost ? ` text-xl` : `text-sm`}`}>{v.title}</motion.div>
+                                                    <div className={` w-full bd ${ispost ? ` p-2 flex items-center justify-between flex-col` : `PostV`}`}>
+                                                        <motion.div className={` uppercase w-full tracking-wide font-semibold ${ispost ? ` text-xl flex items-center justify-between gap-2` : `text-sm`}`}>
+                                                            {
+                                                                !ispost ?
+                                                                <>{v.title}</> :
+                                                                <>
+                                                                <span>{v.title}</span>
+                                                                {
+                                                                    next_play.length > 0 && (
+                                                                        <div onClick={e => {
+                                                                            if(next_play.length > 0){
+                                                                                nav(`../pt/${next_play[0].id}`)
+                                                                            }
+                                                                        }} title={`Next Video`} className="data_bse bg-primary rounded-lg hover:scale-[1.1] transition-all active:scale-[.90] min-w-10 brd flex items-center justify-center cursor-pointer">
+                                                                            <i className="bi bi-arrow-right" />
+                                                                        </div>
+                                                                    )
+                                                                }
+                                                                </>
+                                                            }
+                                                        </motion.div>
                                                         <motion.p layoutId={`_id${v.id}`} onClick={e => setselect(`_id${v.id}`)} className={`mt-2 cursor-pointer text-gray-500 h-full w-full line-clamp-1`}>
                                                             {v.description.slice(0, 80)}
                                                         </motion.p>
@@ -275,7 +366,9 @@ let Post = ({ val, ispost }) => {
                                                     <Comments post={v} val={v.comments} ispost={ispost} /> : ''
                                             }
                                             {/* formatNumber(v.liked.flatMap(item => item).length) */}
-                                            <div className="acbtns w-full">
+                                           {
+                                            !isSwiper && (
+                                                <div className="acbtns w-full">
                                                 <motion.div className="text-center p-2 gap-2 overflow-x-auto opacity-[.3] bt bd text-sm flex items-center justify-between w-full">
                                                     <motion.div className="mddta flex items-center justify-center w-full min-w-fit text-sm">
                                                         {v.liked > 2 ? `Likes` : `Like`} {v.liked ? `(${formatNumber(v.liked)})` : ``}
@@ -313,6 +406,8 @@ let Post = ({ val, ispost }) => {
                                                     </RWebShare>
                                                 </motion.div>
                                             </div>
+                                            )
+                                           }
                                         </div>
 
                                     </motion.div>

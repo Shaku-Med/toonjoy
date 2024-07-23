@@ -219,7 +219,7 @@ const App = ({ k, dv, db, KeepQuiet }) => {
                           <>
                             {
                               selid && selid === '_id_nav_top' ?
-                                <Modal mClass={`  flex items-center justify-center p-2`} hasDim={`bg-[var(--mainBg)]`} className={`bg-[var(--basebg)] rpSst brd p-2 overflow-auto w-full itemaidnalsin max-w-[800px] max-h-[560px]`} select={selid} setselect={setselid}>
+                                <Modal isDrag={true} mClass={`  flex items-center justify-center p-2`} hasDim={`bg-[var(--mainBg)]`} className={`bg-[var(--basebg)] rpSst brd p-2 overflow-auto w-full itemaidnalsin max-w-[800px] h-full max-h-[560px]`} select={selid} setselect={setselid}>
                                   <Nav />
                                 </Modal> : ''
                             }
@@ -228,19 +228,20 @@ const App = ({ k, dv, db, KeepQuiet }) => {
                                 <motion.div className="mssst min-w-fit">
                                   <Logo className={` w-12 h-12`} />
                                 </motion.div>
-                                <motion.div className="tj min-w-fit text-xl uppercase flex items-center justify-center gap-2">
-                                  <i className="bi bi-emoji-astonished text-sm" />
+                                <motion.div className="tj  min-w-fit w-full text-xl uppercase flex items-center justify-center gap-2">
                                   <span>Toon Joy</span>
-                                  <i className="bi bi-emoji-astonished text-sm" />
                                 </motion.div>
-                                {/* <motion.div onClick={e => setselid(`_id_nav_top`)} layoutId={`_id_nav_top`} className="sin  min-w-15 min-h-15 flex items-center justify-center text-2xl p-2 cursor-pointer h-full w-12">
-                                  <i className="bi bi-list h-full w-full" />
-                                </motion.div> */}
+                                <motion.div onClick={e => setselid(`_id_nav_top`)} layoutId={`_id_nav_top`} className="sin  min-w-10 min-h-fit bl flex items-center justify-center text-2xl p-2 cursor-pointer h-full w-12">
+                                  <i className="bi bi-plus h-full w-full" />
+                                </motion.div>
                               </motion.div>
                             </motion.div>
                           </> :
                           <>
-                            <motion.div layoutId='nav' onClick={e => goBack()} className={`goBak fixed ${selid && selid !== '_id_nav_top' ? `` : `z-[100000]`} w-10 flex items-center justify-center h-10 min-w-10 transition-all brd rounded-full top-3 left-3 cursor-pointer bg-[var(--dimbg)] opacity-[.3] hover:opacity-[1]`}>
+                            <motion.div  onClick={e => nav(`../`)} className={`goBak fixed ${selid && selid !== '_id_nav_top' ? `` : `z-[100000]`} w-10 flex items-center justify-center h-10 min-w-10 transition-all brd rounded-full top-3 left-3 cursor-pointer bg-[var(--dimbg)] opacity-[.3] hover:opacity-[1]`}>
+                              <i className="bi bi-house" />
+                            </motion.div>
+                            <motion.div layoutId='nav' onClick={e => goBack()} className={`goBak fixed ${selid && selid !== '_id_nav_top' ? `` : `z-[100000]`} w-10 flex items-center justify-center h-10 min-w-10 transition-all brd rounded-full top-3 left-14 cursor-pointer bg-[var(--dimbg)] opacity-[.3] hover:opacity-[1]`}>
                               <i className="bi bi-arrow-left" />
                             </motion.div>
                           </>
