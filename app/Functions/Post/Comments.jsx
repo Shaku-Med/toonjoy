@@ -147,7 +147,7 @@ let Comments = ({ val, ispost, post }) => {
                 });
 
                 if (reA.length > 0) {
-                    let srt = reA.sort((a, b) => new Date(b.dt) - new Date(a.dt))
+                    let srt = reA.sort((a, b) => new Date(a.dt) - new Date(b.dt))
                     setcomments(srt)
                 }
 
