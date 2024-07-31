@@ -469,7 +469,7 @@ const ClientD = () => {
                     st.length > 0 && (
                         <div className="inalsy flex  flex-col w-full text-center p-2 items-center justify-center">
                             <div className={`text-2xl uppercase`}>Stored on your device.</div>
-                            <p className={` opacity-[.6] p-2`}>It stays here till you clear your cache or delete it you self.</p>
+                            <p className={` opacity-[.6] p-2`}>It stays here till you clear your cache or delete it your self.</p>
                         </div>
                     )
                 }
