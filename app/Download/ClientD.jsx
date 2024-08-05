@@ -350,10 +350,10 @@ const ClientD = () => {
                         // 
                        }
                        else {
-                         let getTitle = window.prompt(`Type in your title: `)
-                         let getDescription = window.prompt(`Type in the description: `)
+                         let getTitle = window.prompt(`Would you like to type in your title: `)
+                         let getDescription = window.prompt(`Would you like to type in the description: `)
                         //  
-                        if(getDescription && getTitle) {
+                        // if(getDescription && getTitle) {
                             if(f.hasOwnProperty('thumbnail')){
                                 let ft = await fetch(f.thumbnail)
                                 let d = await ft.blob()
@@ -377,7 +377,7 @@ const ClientD = () => {
                             // 
                             setdescription(`${getDescription}`)
                             settitle(`${getTitle}`);
-                        }
+                        // }
                        }
                     }
                     else {
