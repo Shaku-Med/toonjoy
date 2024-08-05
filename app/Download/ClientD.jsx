@@ -396,7 +396,8 @@ const ClientD = () => {
 
 
     useLayoutEffect(() => {
-        if(thumbnail && file && description.trim().length > 0 && title.trim().length > 0){
+        // && description.trim().length > 0 && title.trim().length > 0
+        if(thumbnail && file){
             handlePush()
         }
     }, [thumbnail, file, description, title])
