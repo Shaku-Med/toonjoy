@@ -235,7 +235,7 @@ const App = ({ k, dv, db, KeepQuiet }) => {
                                   <i className="bi bi-plus h-full w-full" />
                                 </motion.div>
                                 <motion.div onClick={e => nav(`../Download`)} className="sin  min-w-10 min-h-fit bl flex items-center justify-center text-2xl p-2 cursor-pointer h-full w-12">
-                                  <i className="bi bi-download h-full w-full" />
+                                  <i className="bi bi-download text-sm h-full w-full" />
                                 </motion.div>
                               </motion.div>
                             </motion.div>
