@@ -234,7 +234,7 @@ const App = ({ k, dv, db, KeepQuiet }) => {
                                 <motion.div onClick={e => setselid(`_id_nav_top`)} layoutId={`_id_nav_top`} className="sin  min-w-10 min-h-fit bl flex items-center justify-center text-2xl p-2 cursor-pointer h-full w-12">
                                   <i className="bi bi-plus h-full w-full" />
                                 </motion.div>
-                                <motion.div onClick={e => nav(`../Download`)} className="sin  min-w-10 min-h-fit bl flex items-center justify-center text-2xl p-2 cursor-pointer h-full w-12">
+                                <motion.div onClick={e => window.open(`../Download`, '_self')} className="sin  min-w-10 min-h-fit bl flex items-center justify-center text-2xl p-2 cursor-pointer h-full w-12">
                                   <i className="bi bi-download text-sm h-full w-full" />
                                 </motion.div>
                               </motion.div>
