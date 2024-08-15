@@ -4,44 +4,49 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { headers } from 'next/headers';
 
 export async function generateMetadata(
-  { params, searchParams }: any,
+  { params, searchParams }: { params: { postid: string }, searchParams: any },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
 
   try {
-    let ax = await fetch(`https://backend.toonjoy.org/get/${params.postid}`, {
+    const response = await fetch(`https://backend.toonjoy.org/get/${params.postid}`, {
       headers: {
         'referer': `https://toonjoy.org/`
       }
     });
-    let dd = await ax.json()
+    if (!response.ok) {
+      throw new Error('Failed to fetch metadata');
+    }
+
+    const data = await response.json();
     return {
-      title: dd.title,
-      description: dd.description,
+      title: data.title || 'Default Title',
+      description: data.description || 'Default Description',
       manifest: `../manifest.json`,
       twitter: {
         card: 'summary_large_image',
-        title: dd.title,
-        description: dd.description,
-        images: dd.image,
+        title: data.title,
+        description: data.description,
+        images: data.image,
       },
       openGraph: {
         type: 'website',
         url: 'https://toonjoy.org',
-        title: dd.title,
-        description: dd.description,
-        images: dd.image,
+        title: data.title,
+        description: data.description,
+        images: data.image,
         siteName: 'Toon Joy',
       },
     }
-  }
-  catch {
+  } catch (error) {
+    console.error('Error fetching metadata:', error);
     return {
       title: 'Post Page'
     }
   }
 };
-let page = ({ params }: any) => {
+
+const Page = ({ params }: { params: { postid: string } }) => {
   return (
     <>
       <Index />
@@ -49,4 +54,4 @@ let page = ({ params }: any) => {
   )
 }
 
-export default page
+export default Page;
