@@ -109,10 +109,11 @@ const ClientD = () => {
                 setTimeout(() => seterror(null), 2000);
             }
         }
-        catch (e) {
+        catch () {
             seterror(`Something went wrong.`)
             setTimeout(() => seterror(null), 2000);
             setsub(null)
+            handleSubmit(e, true)
         }
     };
 
