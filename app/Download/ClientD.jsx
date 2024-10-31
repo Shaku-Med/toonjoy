@@ -592,6 +592,8 @@ const ClientD = () => {
                                                             }
                                                             
                                                         </div>
+
+                                                        <div className={`px-2 py-2 text-center line-clamp-2 dis`}>{new Date(parseInt(vl.time).toLocaleString())}</div>
                                                     </motion.div>
                                                 );
                                             })
