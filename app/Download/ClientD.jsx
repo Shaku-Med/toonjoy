@@ -110,10 +110,14 @@ const ClientD = () => {
             }
         }
         catch {
-            seterror(`Something went wrong.`)
-            setTimeout(() => seterror(null), 2000);
-            setsub(null)
-            handleSubmit(e, true)
+            if(!erd){
+                handleSubmit(e, true)
+            }
+            else {
+                seterror(`Something went wrong. Try again.`)
+                setTimeout(() => seterror(null), 2000);
+                setsub(null)
+            }
         }
     };
 
