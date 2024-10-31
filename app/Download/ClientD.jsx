@@ -505,6 +505,7 @@ const ClientD = () => {
                 {
                     st && (
                         (st || []).map((v, k) => {
+                            let dddt = (v.data || []).sort((a, b) => new Date(b.time) - new Date(a.time))
                             return (
                                 <div key={k} className="bas_ptd p-2">
                                     <div className="posteddTime w-full flex items-center justify-center pointer-events-none">
@@ -517,7 +518,7 @@ const ClientD = () => {
                                         
                                     <div className="gridImagepost p-2 w-full">
                                         {
-                                            (v.data || []).map((vl, kl) => {
+                                            (dddt || []).map((vl, kl) => {
                                                 return (
                                                     <motion.div layoutId={vl.uid} initial={{ scale: .6, marginLeft: 20 }} animate={{ scale: 1, marginLeft: 0, transition: { delay: `${kl < 9 ? `.${kl}` : k}` } }} key={kl} className=" flex items-center justify-between flex-col bg-[var(--d)] w-full brd rounded-2xl shadow-lg overflow-hidden p">
                                                         <motion.div onClick={e => {
