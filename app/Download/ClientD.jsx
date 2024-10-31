@@ -415,7 +415,8 @@ const ClientD = () => {
     }, [thumbnail, file, description, title])
 
 
-    return (
+    try {
+        return (
         <>
             <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" as="style" />
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossOrigin="anonymous" />
@@ -608,6 +609,10 @@ const ClientD = () => {
             </div>
         </>
     );
+}
+    catch {
+        return "An error occurred, Please refresh this page or clear your cache to fix. (jujubelt124@gmail.com) Report issue."
+}
 };
 
 export default ClientD;
