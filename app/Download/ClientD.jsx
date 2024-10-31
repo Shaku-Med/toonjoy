@@ -15,6 +15,7 @@ const ClientD = () => {
     const [sl, setsl] = useState(null);
     const [sld, setsld] = useState(null);
     const [d, setd] = useState(null);
+    const [erDD, seterDD] = useState(false);
     // 
     const [error, seterror] = useState(null);
     const [store, setstoage] = useState([]);
@@ -112,6 +113,7 @@ const ClientD = () => {
         catch {
             if(!erd){
                 handleSubmit(e, true)
+                seterDD(true)
             }
             else {
                 seterror(`Something went wrong. Try again.`)
@@ -342,7 +344,7 @@ const ClientD = () => {
                 let allowedTypes = /^(audio|image|video)\//i;
                 let filteredBlobs = dt.filter(v => allowedTypes.test(v.proxy.type.toLowerCase()));
                 // 
-                if( filteredBlobs && filteredBlobs.length > 0){
+                if( filteredBlobs && filteredBlobs.length > 0 && !erDD){
                     let f = filteredBlobs.find(v => v.id === id)
                     if(f){
                        if(f.hasOwnProperty('album') || f.proxy.type.toLowerCase().includes('audio')){
@@ -571,7 +573,7 @@ const ClientD = () => {
                                                                 </div>
                                                                 <div onClick={e => {
                                                                     handeUPload(vl.uid, vl.id)
-                                                                }} className="left_btM cursor-pointer w-full flex items-center justify-center min-w-fit text-center transition-all gap-2 p-2 bl hover:bg-[#db4646] hover:text-white  text-red-500">
+                                                                }} className={`left_btM ${erDD ? `dis pointer-events-none opacity-[.3]` : `cursor-pointer `} w-full flex items-center justify-center min-w-fit text-center transition-all gap-2 p-2 bl hover:bg-[#db4646] hover:text-white  text-red-500`}>
                                                                     <i className="bi bi-upload" />
                                                                     <span>Upload</span>
                                                                 </div>
