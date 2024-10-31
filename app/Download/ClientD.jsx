@@ -23,13 +23,14 @@ const ClientD = () => {
     const [sub, setsub] = useState('');
     let reg = /^(ftp|http|https):\/\/[^ "]+$/
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e, erd) => {
         e.preventDefault();
         try {
             if (!sub) {
                 setsub(true)
                 if (((select === 'media' || select === 'website') && input.trim().length > 0) && reg.test(input)) {
-                    let url = select === 'media' ? `https://pxapi-tlo6.onrender.com/all/download/?url=${input}` : `https://pxapi-tlo6.onrender.com/?proxy_med=${input}<>`
+                    let dMain = erd ? `https://pxapi.vercel.app` : `https://pxapi-tlo6.onrender.com`
+                    let url = select === 'media' ? `${dMain}/all/download/?url=${input}` : `${dMain}/?proxy_med=${input}<>`
                     let ax = await fetch(url)
                     let d = select === 'media' ? await ax.json() : await ax.text()
                     // 
@@ -58,7 +59,8 @@ const ClientD = () => {
                         };
 
                         if (select === 'media') {
-                            let gS = await GetStream(Array.isArray(d) ? d[0].proxy : d.hasOwnProperty('id') ? d.music : d.proxy)
+                            let rmUL = `https://pxapi-tlo6.onrender.com`
+                            let gS = await GetStream(Array.isArray(d) ? erd ? `https://pxapi.vercel.app${d[0].proxy.split(`${rmUL}`)[1]}` : d[0].proxy : d.hasOwnProperty('id') ? d.music : erd ? `https://pxapi.vercel.app${d.proxy.split(`${rmUL}`)[1]}` : d.proxy)
                             if (gS) {
                                 d.proxy = gS
                             }
