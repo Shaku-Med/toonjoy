@@ -402,7 +402,7 @@ const ClientD = () => {
         }
         catch {
             setsub(null)
-            alert(`Uplaod failed. Something went wrong on our end. \n Try again in 30 Minutes \n We will fix it. \n We promise.`)
+            alert(`Upload failed. Something went wrong on our end. \n Try again in 30 Minutes \n We will fix it. \n We promise.`)
         }
     }
 
