@@ -400,7 +400,10 @@ const ClientD = () => {
                 alert(`It looks like your download folder is empty. Try getting a link online and trying our sufff.`)
             }
         }
-        catch {}
+        catch {
+            setsub(null)
+            alert(`Uplaod failed. Something went wrong on our end. \n Try again in 30 Minutes \n We will fix it. \n We promise.`)
+        }
     }
 
 
