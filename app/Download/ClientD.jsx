@@ -47,9 +47,10 @@ const ClientD = () => {
                                     seterror(`info: Download complete...`)
                                     setTimeout(() => seterror(null), 3000)
                                     // 
-                                    console.log(stream.type)
+                                    let ttype = stream.type.length > 0 ? stream.type.includes('application') ? 'video/mp4' : stream.type : `audio/mp3`
+                                    console.log(ttype)
                                     let blob = new Blob([stream], {
-                                        type: stream.type.trim().length > 0 ? stream.type.includes('application') ? 'video/mp4' : stream.type : `audio/mp3`
+                                        type: ttype
                                     })
                                     return blob
                                 }
