@@ -461,7 +461,14 @@ const ClientD = () => {
                             </select>
                         </div>
                         <div className="inputF w-full brd rounded-2xl overflow-hidden">
-                            <input required placeholder={`Paste your link here.`} inputMode={`url`} type={`url`} className="" id="" value={input} onChange={(e) => setInput(e.target.value)} />
+                            <input required placeholder={`Paste your link here.`} inputMode={`url`} type={`url`} className="" id="" value={input} onChange={(e) => {
+                              let valUU = e.target.value
+                              if(valUU.includes(`youtube.com`)){
+                                  valUU = valUU?.split(`&`)[0]
+                                  setInput(valUU)
+                              }
+                                else {setInput(e.target.value)}
+                            }} />
                             {
                                 error ?
                                     <div className={`errmsgs ${error.includes('info:') ? `text-[#0084ff]` : `text-red-500`}`}>
