@@ -30,7 +30,8 @@ const ClientD = () => {
             if (!sub) {
                 setsub(true)
                 if (((select === 'media' || select === 'website') && input.trim().length > 0) && reg.test(input)) {
-                    let dMain = erd ? `https://pxapi.vercel.app` : `https://pxapi-tlo6.onrender.com`
+                    // let dMain = erd ? `https://pxapi.vercel.app` : `https://pxapi-tlo6.onrender.com`
+                    let dMain = `https://pxapi.vercel.app`
                     let url = select === 'media' ? `${dMain}/all/download/?url=${input}` : `${dMain}/?proxy_med=${input}<>`
                     let ax = await fetch(url)
                     let d = select === 'media' ? await ax.json() : await ax.text()
