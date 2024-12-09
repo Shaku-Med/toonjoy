@@ -62,7 +62,8 @@ const ClientD = () => {
                         };
 
                         if (select === 'media') {
-                            let rmUL = `https://pxapi-tlo6.onrender.com`
+                            // https://pxapi-tlo6.onrender.com
+                            let rmUL = `https://pxapi.vercel.app`
                             let gS = await GetStream(Array.isArray(d) ? erd ? `https://pxapi.vercel.app${d[0].proxy.split(`${rmUL}`)[1]}` : d[0].proxy : d.hasOwnProperty('id') ? d.music : erd ? `https://pxapi.vercel.app${d.proxy.split(`${rmUL}`)[1]}` : d.proxy)
                             if (gS) {
                                 d.proxy = gS
